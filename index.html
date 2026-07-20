@@ -103,6 +103,39 @@
       background-color: #1d4ed8;
     }
 
+    .project-card {
+      background-color: #f9fafb;
+      padding: 18px;
+      border-radius: 8px;
+      margin-top: 15px;
+      border-left: 4px solid #2563eb;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .image-grid img,
+    .image-grid video {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      border-radius: 8px;
+      background-color: #f4f6f8;
+    }
+
+    .image-grid img {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.03);
+    }
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -117,28 +150,72 @@
       border-radius: 8px;
     }
 
-    .project-card {
+    .autocad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .autocad-card {
       background-color: #f9fafb;
-      padding: 18px;
       border-radius: 8px;
-      margin-top: 15px;
+      padding: 12px;
+      text-align: center;
       border-left: 4px solid #2563eb;
     }
 
-    .image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin: 20px 0;
-}
+    .autocad-card iframe {
+      width: 100%;
+      height: 260px;
+      border: none;
+      border-radius: 6px;
+      background-color: white;
+    }
 
-.image-grid img {
-  width: 100%;
-  height: 320px;
-  object-fit: contain;
-  border-radius: 8px;
-  background-color: #f4f6f8;
-}
+    .autocad-card h3 {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+
+    .autocad-folder-link {
+      margin-top: 15px;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding: 30px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 8px;
+      background-color: white;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-lightbox:hover {
+      color: #d1d5db;
+    }
 
     footer {
       text-align: center;
@@ -158,94 +235,15 @@
         margin: 8px 0;
       }
 
-      .image-grid img {
-        height: 160px;
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-grid img,
+      .image-grid video {
+        height: 260px;
       }
     }
-  
-  /* Image grid styling */
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.image-grid img,
-.image-grid video {
-  width: 100%;
-  height: 320px;
-  object-fit: contain;
-  border-radius: 8px;
-  background-color: #f4f6f8;
-}
-
-.image-grid img {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.image-grid img:hover {
-  transform: scale(1.03);
-}
-
-/* Lightbox enlarged image popup */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  padding: 30px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 85%;
-  border-radius: 8px;
-  background-color: white;
-}
-
-.close-lightbox {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-lightbox:hover {
-  color: #d1d5db;
-}
-
-@media (max-width: 600px) {
-  .image-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .image-grid img {
-    height: 260px;
-  }
-}
-  .project-video {
-  width: 100%;
-  max-width: 750px;
-  display: block;
-  margin: 20px auto;
-  border-radius: 8px;
-  background-color: #000;
-}
-
-</style>
-</head>
-  
   </style>
 </head>
 
@@ -258,6 +256,7 @@
   <nav>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
+    <a href="#autocad">AutoCAD</a>
     <a href="#skills">Skills</a>
     <a href="#resume">Resume</a>
     <a href="#contact">Contact</a>
@@ -275,7 +274,7 @@
 
     <p>
       I am interested in engineering opportunities that allow me to apply my
-      technical background, hands-on experience, and problem-solving skills to manufacturing and production,
+      technical background, hands-on experience, and problem-solving skills to
       support design, analysis, testing, and continuous improvement.
     </p>
   </section>
@@ -288,18 +287,18 @@
       <p><strong>UAV Payload Detachment Mechanism</strong></p>
 
       <div class="image-grid">
-  <img src="images/me_UAV_payload.jpeg" alt="Me with UAV payload">
-  <img src="images/faring_full_model.jpeg" alt="UAV fairing full model">
-  <img src="images/baydoors.jpeg" alt="Bay doors design">
-  <img src="images/UAV_payload.jpeg" alt="UAV payload">
-  <img src="images/UAV_payload_mounted.jpeg" alt="UAV payload mounted">
+        <img src="images/me_UAV_payload.jpeg" alt="Me with UAV payload">
+        <img src="images/faring_full_model.jpeg" alt="UAV fairing full model">
+        <img src="images/baydoors.jpeg" alt="Bay doors design">
+        <img src="images/UAV_payload.jpeg" alt="UAV payload">
+        <img src="images/UAV_payload_mounted.jpeg" alt="UAV payload mounted">
 
-  <video controls>
-    <source src="images/UAV_UGV.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
-      
+        <video controls>
+          <source src="images/UAV_UGV.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
       <ul>
         <li>
           Developed a UAV payload detachment mechanism for a Northrop Grumman
@@ -330,28 +329,27 @@
 
       <p>
         Completed engineering coursework and projects involving mechanical design,
-        stress analysis, material selection, CAD modeling, FEA, and design calculations.
+        stress analysis, material selection, CAD modeling, and design calculations.
       </p>
     </div>
 
     <div class="project-card">
-  <h3>Finite Element Analysis Projects</h3>
+      <h3>Finite Element Analysis Projects</h3>
 
-  <a class="button" href="FEA Portfolio.pdf" target="_blank">View FEA Portfolio</a>
+      <a class="button" href="FEA Portfolio.pdf" target="_blank">View FEA Portfolio</a>
 
-  <div class="image-grid">
-    <img src="images/FEA_plate.jpeg" alt="FEA plate analysis model">
-    <img src="images/FEA_revolute_joint.jpeg" alt="FEA revolute joint model">
-  </div>
+      <div class="image-grid">
+        <img src="images/FEA_plate.jpeg" alt="FEA plate analysis model">
+        <img src="images/FEA_revolute_joint.jpeg" alt="FEA revolute joint model">
+      </div>
 
-  <p>
-    Completed FEA coursework and lab projects involving geometry preparation,
-    meshing, boundary conditions, loads, constraints, and result interpretation
-    using FEMAP and NASTRAN.
-  </p>
-      
+      <p>
+        Completed FEA coursework and lab projects involving geometry preparation,
+        meshing, boundary conditions, loads, constraints, and result interpretation
+        using FEMAP and NASTRAN.
+      </p>
+
       <ul>
-        
         <li>
           Created and modified finite element models to study structural behavior,
           stress distribution, displacement, and constraint effects.
@@ -366,6 +364,41 @@
         </li>
       </ul>
     </div>
+  </section>
+
+  <section id="autocad">
+    <h2>AutoCAD Drafting Projects</h2>
+
+    <p>
+      This section includes selected AutoCAD drafting work and layout drawings.
+      The files below can be opened as PDFs to view the full drawing details.
+    </p>
+
+    <div class="autocad-grid">
+      <div class="autocad-card">
+        <iframe src="images/AutoCAD/Drawing%2026.pdf#toolbar=0"></iframe>
+        <h3>Drawing 26</h3>
+        <a class="button" href="images/AutoCAD/Drawing%2026.pdf" target="_blank">View Drawing</a>
+      </div>
+
+      <div class="autocad-card">
+        <iframe src="images/AutoCAD/Drawing%2025.pdf#toolbar=0"></iframe>
+        <h3>Drawing 25</h3>
+        <a class="button" href="images/AutoCAD/Drawing%2025.pdf" target="_blank">View Drawing</a>
+      </div>
+
+      <div class="autocad-card">
+        <iframe src="images/AutoCAD/Drawing%2023.pdf#toolbar=0"></iframe>
+        <h3>Drawing 23</h3>
+        <a class="button" href="images/AutoCAD/Drawing%2023.pdf" target="_blank">View Drawing</a>
+      </div>
+    </div>
+
+    <p class="autocad-folder-link">
+      <a class="button" href="https://github.com/glazaro3251-dev/Gustabo_Lazaro_ME/tree/main/images/AutoCAD" target="_blank">
+        View All AutoCAD Files
+      </a>
+    </p>
   </section>
 
   <section id="skills">
@@ -414,7 +447,6 @@
     </p>
 
     <a class="button" href="Gustabo Lazaro Resume GitHub.pdf" target="_blank">View Resume</a>
-    <a class="button" href="Gustabo Lazaro Resume GitHub.pdf" download>Download Resume</a>
   </section>
 
   <section id="contact">
@@ -427,14 +459,8 @@
 
     <p>
       <strong>LinkedIn:</strong>
-      <a href="https://www.linkedin.com/in/gustabo-lazaro-ME" target="_blank">
+      <a href="https://www.linkedin.com/in/gustavo-lazaro-mechanical-engineering" target="_blank">
         View my LinkedIn
-      </a>
-    </p>
- 
-  <p>
-      <strong>Phone:</strong>
-           (909) 828-3411
       </a>
     </p>
   </section>
@@ -443,44 +469,39 @@
     <p>&copy; 2026 Gustabo Lazaro. All rights reserved.</p>
   </footer>
 
-<!-- Lightbox popup for enlarged images -->
-<div id="lightbox" class="lightbox">
-  <span class="close-lightbox">&times;</span>
-  <img id="lightbox-img" src="" alt="Expanded project image">
-</div>
+  <div id="lightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <img id="lightbox-img" src="" alt="Expanded project image">
+  </div>
 
-<script>
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const closeLightbox = document.querySelector(".close-lightbox");
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeLightbox = document.querySelector(".close-lightbox");
 
-  document.querySelectorAll(".image-grid img").forEach(image => {
-    image.addEventListener("click", () => {
-      lightbox.style.display = "flex";
-      lightboxImg.src = image.src;
-      lightboxImg.alt = image.alt;
+    document.querySelectorAll(".image-grid img").forEach(image => {
+      image.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = image.src;
+        lightboxImg.alt = image.alt;
+      });
     });
-  });
 
-  closeLightbox.addEventListener("click", () => {
-    lightbox.style.display = "none";
-  });
-
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) {
+    closeLightbox.addEventListener("click", () => {
       lightbox.style.display = "none";
-    }
-  });
+    });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      lightbox.style.display = "none";
-    }
-  });
-</script>
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
 
-
-
-
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        lightbox.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
